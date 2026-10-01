@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¡Estás invitado! · 08 de octubre de 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--purple-dark:#1a1040;--purple:#4b2a8a;--lavender:#c9b6f2;--gold:#e8b94a;--lantern-yellow:#ffd966;--cream:#fff8e7;}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',system-ui,sans-serif;color:var(--cream);background:linear-gradient(180deg,var(--purple-dark),#2d1b69 45%,var(--purple-dark));overflow-x:hidden;line-height:1.6}
+h1,h2{font-family:'Cinzel Decorative',Georgia,serif;color:var(--lantern-yellow);text-shadow:0 0 18px rgba(255,217,102,.45)}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.lantern{position:absolute;bottom:-60px;width:26px;height:34px;border-radius:40% 40% 30% 30%;background:radial-gradient(circle at 50% 70%,#fff3b0,var(--lantern-yellow) 60%,var(--gold));box-shadow:0 0 22px 6px rgba(255,217,102,.55);opacity:.85;animation:rise linear infinite}
+@keyframes rise{to{transform:translate(var(--dx),-115vh);opacity:0}}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--cream);animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.2}}
+section{position:relative;z-index:1;padding:64px 20px;max-width:560px;margin:auto}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px}
+.hero h1{font-size:clamp(2.2rem,9vw,3.6rem)}
+.date{font-family:'Cinzel Decorative',serif;font-size:1.4rem;color:var(--gold);letter-spacing:1px}
+.tag{color:var(--lavender);font-size:1.1rem}
+.btn{display:inline-block;min-height:52px;padding:14px 28px;border:0;border-radius:999px;font:700 1rem 'Nunito',sans-serif;letter-spacing:.06em;cursor:pointer;text-decoration:none;color:var(--purple-dark);background:linear-gradient(135deg,var(--lantern-yellow),var(--gold));box-shadow:0 0 22px rgba(255,217,102,.4);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+.btn[disabled]{opacity:.6;cursor:wait}
+.card{background:rgba(255,255,255,.07);border:1px solid rgba(232,185,74,.45);border-radius:20px;padding:24px;backdrop-filter:blur(6px);margin-top:18px}
+.row{display:flex;gap:14px;margin:12px 0}.row b{color:var(--gold);display:block}
+.castle{display:block;margin:0 auto;opacity:.35;width:220px}
+label,legend{display:block;font-weight:700;margin:18px 0 8px}
+input[type=text],select{width:100%;min-height:52px;padding:12px 14px;border-radius:12px;border:2px solid var(--lavender);background:var(--cream);color:var(--purple-dark);font:1rem 'Nunito',sans-serif}
+fieldset{border:0;padding:0}
+.opt{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 14px;margin-bottom:10px;border:2px solid var(--lavender);border-radius:12px;cursor:pointer}
+.opt:has(input:checked){border-color:var(--lantern-yellow);background:rgba(255,217,102,.18)}
+.opt input{width:22px;height:22px;accent-color:var(--gold)}
+.err{color:#ffb4b4;font-weight:700;margin-top:6px;min-height:1.2em}
+.err:not(:empty)::before{content:"⚠ "}
+.hp{position:absolute;left:-9999px}
+.count{text-align:center;color:var(--lantern-yellow);margin-top:18px;font-weight:700}
+#modal{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(10,5,30,.85)}
+#modal.open{display:flex}
+.modal-box{background:var(--purple-dark);border:2px solid var(--gold);border-radius:24px;padding:32px 24px;text-align:center;max-width:420px;animation:pop .5s ease}
+@keyframes pop{from{transform:scale(.8);opacity:0}}
+.fade{opacity:0;transform:translateY(20px);transition:.8s}.fade.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+
+<section class="hero" id="inicio">
+  <div style="font-size:2rem" aria-hidden="true">🌸 ✨ 🌸</div>
+  <h1>¡Estás invitado!</h1>
+  <p class="tag">Una celebración llena de magia está por comenzar...</p>
+  <p class="date">08 DE OCTUBRE DE 2026<br>4:30 P. M.</p>
+  <a class="btn" href="#confirmar">CONFIRMAR ASISTENCIA</a>
+</section>
+
+<section class="fade" id="evento">
+  <svg class="castle" viewBox="0 0 220 90" aria-hidden="true"><path fill="#c9b6f2" d="M0 90V60h20V40l10-14 10 14v20h20V30l12-20 12 20v30h24V45h16V20l12-16 12 16v25h16v15h20V42l10-14 10 14v48z"/></svg>
+  <div class="card">
+    <div class="row"><span aria-hidden="true">✨</span><div><b>Fecha</b>08 de octubre de 2026</div></div>
+    <div class="row"><span aria-hidden="true">🕓</span><div><b>Hora</b>4:30 p. m.</div></div>
+    <div class="row"><span aria-hidden="true">📍</span><div><b>Lugar</b>Jirón Moquegua 228, Huancayo</div></div>
+    <a class="btn" id="mapBtn" target="_blank" rel="noopener">VER UBICACIÓN 📍</a>
+  </div>
+</section>
+
+<section class="fade" id="confirmar">
+  <h2>Confirma tu asistencia</h2>
+  <p style="margin-top:10px">Queremos celebrar contigo. Completa tus datos y cuéntanos si podrás acompañarnos.</p>
+  <form class="card" id="form" novalidate>
+    <label for="name">Apellidos y nombres</label>
+    <input type="text" id="name" name="name" maxlength="80" autocomplete="name" placeholder="Escribe tus apellidos y nombres" aria-describedby="nameErr">
+    <p class="err" id="nameErr" role="alert"></p>
+
+    <fieldset aria-describedby="attErr">
+      <legend>¿Confirmas tu asistencia?</legend>
+      <label class="opt"><input type="radio" name="att" value="yes"> Sí, ¡estaré presente! ✨</label>
+      <label class="opt"><input type="radio" name="att" value="no"> No podré asistir 😔</label>
+      <p class="err" id="attErr" role="alert"></p>
+    </fieldset>
+
+    <label for="comp">Número de acompañantes</label>
+    <p style="font-size:.9rem;color:var(--lavender);margin-top:-4px">¿Cuántas personas te acompañarán?</p>
+    <select id="comp" name="comp" style="margin-top:8px"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+    <p class="err" id="compErr" role="alert"></p>
+
+    <input class="hp" type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="err" id="formErr" role="alert"></p>
+    <button class="btn" id="send" type="submit" style="width:100%;margin-top:10px">ENVIAR CONFIRMACIÓN ✨</button>
+  </form>
+  <p class="count" id="count" hidden></p>
+</section>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal-box">
+    <div style="font-size:2.4rem" aria-hidden="true">🏮✨🏮</div>
+    <h2 id="mTitle" style="font-size:1.6rem;margin:10px 0">¡Gracias por confirmar! ✨</h2>
+    <p id="mText"></p>
+    <button class="btn" id="close" style="margin-top:20px">Cerrar</button>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIGURACIÓN CENTRAL (el correo de destino vive en el servidor: DESTINATION_EMAIL) ===== */
+const EVENT_CONFIG = {
+  date: "08 de octubre de 2026",
+  time: "4:30 p. m.",
+  location: "Jirón Moquegua 228, Huancayo",
+  mapsQuery: "Jirón Moquegua 228, Huancayo, Perú",
+  apiUrl: "/api/confirm",
+  countUrl: "/api/count",
+  showCounter: true
+};
+const $ = id => document.getElementById(id);
+$("mapBtn").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(EVENT_CONFIG.mapsQuery);
+
+/* Cielo: estrellas y linternas generadas (ligero) */
+const sky = $("sky"), rnd = (a,b)=>Math.random()*(b-a)+a;
+for(let i=0;i<40;i++){const s=document.createElement("i");s.className="star";s.style.cssText=`left:${rnd(0,100)}%;top:${rnd(0,90)}%;animation-delay:${rnd(0,3)}s`;sky.appendChild(s)}
+function lantern(){const l=document.createElement("i");l.className="lantern";const d=rnd(14,26);l.style.cssText=`left:${rnd(0,100)}%;--dx:${rnd(-60,60)}px;animation-duration:${d}s;transform:scale(${rnd(.6,1.3)})`;sky.appendChild(l);setTimeout(()=>l.remove(),d*1000)}
+for(let i=0;i<9;i++)setTimeout(lantern,i*900);setInterval(lantern,2500);
+
+/* Aparición progresiva */
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("in")),{threshold:.15});
+document.querySelectorAll(".fade").forEach(el=>io.observe(el));
+
+/* Contador de confirmados */
+if(EVENT_CONFIG.showCounter){fetch(EVENT_CONFIG.countUrl).then(r=>r.json()).then(d=>{if(d&&d.count>0){$("count").textContent=`Ya somos ${d.count} invitados confirmados ✨`;$("count").hidden=false}}).catch(()=>{})}
+
+/* Sin asistencia → acompañantes en 0 */
+document.querySelectorAll("[name=att]").forEach(r=>r.addEventListener("change",()=>{
+  const no=document.querySelector("[name=att]:checked").value==="no";
+  $("comp").disabled=no; if(no)$("comp").value="0";
+}));
+
+/* Validación + envío */
+const form=$("form"), btn=$("send"), loadedAt=Date.now();
+let sending=false;
+form.addEventListener("submit",async e=>{
+  e.preventDefault(); if(sending)return;
+  ["nameErr","attErr","compErr","formErr"].forEach(i=>$(i).textContent="");
+  const name=$("name").value.trim().replace(/\s+/g," ");
+  const att=(document.querySelector("[name=att]:checked")||{}).value;
+  const comp=att==="no"?0:parseInt($("comp").value,10);
+  let ok=true;
+  if(name.length<3){$("nameErr").textContent="Por favor, ingresa tus apellidos y nombres.";ok=false;$("name").focus()}
+  if(!att){$("attErr").textContent="Por favor, indica si podrás asistir.";ok=false}
+  if(!(comp>=0&&comp<=5)){$("compErr").textContent="Selecciona un número de acompañantes entre 0 y 5.";ok=false}
+  if(!ok)return;
+  sending=true; btn.disabled=true; btn.textContent="Enviando… 🏮";
+  try{
+    const res=await fetch(EVENT_CONFIG.apiUrl,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name,attending:att==="yes",companions:comp,website:$("website").value,elapsed:Date.now()-loadedAt})});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok)throw new Error(data.error||"No pudimos enviar tu confirmación.");
+    $("mText").textContent=att==="yes"
+      ?"Nos alegra mucho saber que estarás con nosotros. ¡Nos vemos el 08 de octubre!"
+      :"Gracias por avisarnos. Sentiremos que no puedas acompañarnos, pero agradecemos mucho tu respuesta.";
+    $("modal").classList.add("open"); $("close").focus(); burst();
+    btn.textContent="CONFIRMACIÓN ENVIADA ✨"; /* queda bloqueado: evita duplicados */
+  }catch(err){
+    $("formErr").textContent=err.message+" Inténtalo nuevamente.";
+    sending=false; btn.disabled=false; btn.textContent="ENVIAR CONFIRMACIÓN ✨";
+  }
+});
+$("close").addEventListener("click",()=>$("modal").classList.remove("open"));
+document.addEventListener("keydown",e=>e.key==="Escape"&&$("modal").classList.remove("open"));
+function burst(){for(let i=0;i<14;i++)setTimeout(lantern,i*120)}
+</script>
+</body>
+</html>
